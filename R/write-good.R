@@ -1,25 +1,40 @@
-#' <Add Title>
+#' Write Good
 #'
-#' <Add Description>
+#' Supply a RMarkdown document to the write-good linter
 #'
 #' @import htmlwidgets
 #'
 #' @export
-write-good <- function(message, width = NULL, height = NULL, elementId = NULL) {
+write_good <- function(document, passive = T, illusion = T,
+                       so = T, thereIs = T, weasel = T,
+                       adverb = T, tooWordy = T, cliches = T,
+                       eprime = T
+                       ) {
 
-  # forward options using x
+  # create a list that contains the settings
+  settings <- list(
+    document = document,
+    passive = '--passive',
+    illusion = '--illusion',
+    so = '--so',
+    thereIs = '--thereIs',
+    weasel = '--weasel',
+    adverb = '--adverb',
+    tooWordy = '--tooWordy',
+    cliches = '--cliches',
+    eprime = '--emprime'
+  )
+
+  # pass the data and settings using 'x'
   x = list(
-    message = message
+    settings = settings
   )
 
   # create widget
   htmlwidgets::createWidget(
     name = 'write-good',
     x,
-    width = width,
-    height = height,
-    package = 'gramr',
-    elementId = elementId
+    package = 'gramr'
   )
 }
 
@@ -40,13 +55,13 @@ write-good <- function(message, width = NULL, height = NULL, elementId = NULL) {
 #' @name write-good-shiny
 #'
 #' @export
-write-goodOutput <- function(outputId, width = '100%', height = '400px'){
+write_goodOutput <- function(outputId, width = '100%', height = '400px'){
   htmlwidgets::shinyWidgetOutput(outputId, 'write-good', width, height, package = 'gramr')
 }
 
 #' @rdname write-good-shiny
 #' @export
-renderWrite-good <- function(expr, env = parent.frame(), quoted = FALSE) {
+renderWrite_good <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, write-goodOutput, env, quoted = TRUE)
+  htmlwidgets::shinyRenderWidget(expr, write_goodOutput, env, quoted = TRUE)
 }
