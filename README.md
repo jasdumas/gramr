@@ -1,8 +1,5 @@
 # gramr
 
-[![Travis-CI Build Status](https://travis-ci.org/benmarwick/gramr.svg?branch=master)](https://travis-ci.org/benmarwick/gramr)
-[![Coverage Status](https://img.shields.io/codecov/c/github/ropenscilabs/gramr/master.svg)](https://codecov.io/github/ropenscilabs/gramr?branch=master)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2017--05--19-brightgreen.svg)](https://github.com/ropenscilabs/gramr/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) 
 
 **The goal of gramr is to help R programmers who can't write good and and wanna learn to do other stuff good too by checking a RMarkdown document for grammatical errors.**
 
@@ -23,9 +20,21 @@ devtools::install_github("ropenscilabs/gramr")
 
 `write_good_ip()`: run the write-good linter on text in a currently active Rmd file in RStudio
 
-![](untitled-picture.jpg)
-
 `write_good_file("my_file.Rmd")`: run the write-good linter on text in an Rmd file (RStudio not required)
+
+`run_grammar_checker("example.rmd")`: run the write-good linter interactively
+
+![](shiny-wg.jpg)
+
+**Example Output**:
+ 
+```r
+> write_good_file("tests/testthat/test.Rmd")
+
+#  index offset                              reason
+#1    15     12 "been defined" may be passive voice
+#2    49      8       "suddenly" can weaken meaning
+```
 
 ## Contributing
 
