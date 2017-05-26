@@ -1,4 +1,4 @@
-Name: Run write-good on Untitled Documents
+Name: write-good on Untitled Documents
 Description: Run write-good linter before saving a multi-line file.
 Binding: write_good_ip
 Interactive: false
