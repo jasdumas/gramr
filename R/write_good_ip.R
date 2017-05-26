@@ -12,6 +12,8 @@ write_good_ip <- function(){
   untitled <- rstudioapi::getSourceEditorContext()
   # remove empty lines
   untitled_text <- untitled$contents[untitled$contents != "" ]
+  # combine into single chr vector
+  untitled_text <- paste0(untitled_text, collapse = " ")
   #  load write-good
   ct <- init_write_good()
   # analyse the text
