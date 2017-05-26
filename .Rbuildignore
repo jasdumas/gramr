@@ -5,3 +5,5 @@
 ^codecov\.yml$
 ^untitled-picture\.jpg$
 
+^BLOG\.Rmd$
+^BLOG\.html$
