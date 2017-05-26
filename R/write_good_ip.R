@@ -2,59 +2,43 @@
 #' If you have an 'UntitledX' document check the grammar before saving the file.
 #' @return a print out of suggestions for grammar fixes
 #' @export
+#' @importFrom rstudioapi getSourceEditorContext
+#' @import V8
+#' @examples
+#' # don't run during tests
+#' # write_good_ip()
 write_good_ip <- function(){
   # Check a in-progress Untitled document before saving
-  untitled <- rstudioapi::getActiveDocumentContext()
+  untitled <- rstudioapi::getSourceEditorContext()
   # remove empty lines
   untitled_text <- untitled$contents[untitled$contents != "" ]
-  # remove a bunch of other things
-  untitled_text <- prep_text(untitled_text)
-  cmd <- paste0("write-good --text='", untitled_text, "'")
-  sapply(cmd, system)
+  #  load write-good
+  ct <- init_write_good()
+  # analyse the text
+  write_good_output <- ct$call("writeGood", untitled_text)
+  return(write_good_output)
 }
 
-prep_text <- function(text){
 
-  # remove all line breaks, http://stackoverflow.com/a/21781150/1036500
-  text <- gsub("[\r\n]", " ", text)
+#' Check the grammar of a Rmd by filename
+#'
+#'
+#' @param filename the name of an Rmd file. Does not have to be open in RStudio.
+#' @return a print out of suggestions for grammar fixes
+#' @export
 
-  # don't include front yaml
-  text <- gsub("---.*--- ", "", text)
-
-  # don't include text in code chunks: https://regex101.com/#python
-  text <- gsub("```\\{.+?\\}.+?```", "", text)
-
-  # don't include text in in-line R code
-  text <- gsub("`r.+?`", "", text)
-
-  # don't include HTML comments
-  text <- gsub("<!--.+?-->", "", text)
-
-  # don't include LaTeX comments
-  # how to do this? %%
-
-  # don't include inline markdown URLs
-  text <- gsub("\\(http.+?\\)", "", text)
-
-  # don't include images with captions
-  text <- gsub("!\\[.+?\\)", "", text)
-
-  # don't include # for headings
-  text <- gsub("#*", "", text)
-
-  # don't include html tags
-  text <- gsub("<.+?>|</.+?>", "", text)
-
-  # don't include LaTeX \eggs{ham}
-  # how to do? problem with capturing \x
-
-
-  if(nchar(text) == 0){
-    stop("You have not selected any text. Please select some text with the mouse and try again")
-  } else {
-
-  return(text)
-
-  }
-
+#' @import V8
+#' @examples
+#' # don't run during tests
+#' # write_good_file()
+write_good_file <- function(filename = ""){
+  # Check a in-progress Untitled document before saving
+  file_text <- paste(scan(filename, 'character', quiet = TRUE), collapse = " ")
+  #  load write-good
+  ct <- init_write_good()
+  # analyse the text
+  write_good_output <- ct$call("writeGood", file_text)
+  return(write_good_output)
 }
+
+

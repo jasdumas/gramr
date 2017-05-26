@@ -1,0 +1,4 @@
+Name: write-good
+Description: Run write-good linter before saving a multi-line file.
+Binding: write_good_ip
+Interactive: true
