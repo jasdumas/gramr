@@ -1,7 +1,9 @@
 Package: gramr
 Title: The Grammar of Grammar
 Version: 0.0.0.9000
-Authors@R: person("Jasmine", "Dumas", email = "jasmine.dumas@gmail.com", role = c("aut", "cre"))
+Authors@R: c(person("Jasmine", "Dumas", email = "jasmine.dumas@gmail.com", role = c("aut", "cre")), 
+             person("Ben", "Marwick", email = "benamrwick@gmail.com", role = "aut"),
+             person("Gordon", "Shotwell", email = "g.e.shotwell@gmail.com", role = "aut"))
 Description: Checks for grammar and spelling and avoids some obvious 
     programming nomenclature such as hex codes, existing package names, and file extensions.
 Depends: R (>= 3.3.1)
@@ -12,5 +14,9 @@ RoxygenNote: 6.0.1
 Imports:
  rstudioapi,
  V8
-Suggests: testthat,
-    covr
+Suggests: 
+  testthat,
+  covr
+URL: https://github.com/ropenscilabs/gramr
+BugReports: https://github.com/ropenscilabs/gramr/issues
+
