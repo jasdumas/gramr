@@ -13,7 +13,16 @@ devtools::install_github("ropenscilabs/gramr")
 
 ### Current Dependencies
 
-This package currently is dependent on **node.js** available at: https://nodejs.org/en/ which also downloads [npm](https://www.npmjs.com/)
+This package currently is dependent on **node.js** available at: https://nodejs.org/en/ which also downloads [npm](https://www.npmjs.com/).
+
+Once you have node.js installed, you'll need to install `write-good`, like this:
+
+
+```
+npm install -g write-good
+```
+
+
 
 ## Example
 
