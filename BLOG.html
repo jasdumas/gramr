@@ -125,6 +125,14 @@ $(document).ready(function () {
 
 
 <p><strong>Package Developers</strong>: Jasmine Dumas (<a href="mailto:jasmine.dumas@gmail.com">jasmine.dumas@gmail.com</a>, Ben Marwick (<a href="mailto:benamrwick@gmail.com">benamrwick@gmail.com</a>), Gordon Shotwell (<a href="mailto:g.e.shotwell@gmail.com">g.e.shotwell@gmail.com</a>)</p>
+<p>The idea behind this package was to develop a tool that checks for common grammatical errors as a companion to the native RStudio spell check, posed in the <a href="https://github.com/ropensci/unconf17/issues/53">ropensci/unconf issue #53</a>. The initial problem statement was to alieviate the time consuming efforts in editing RMarkdown documents in external word processing tools such as MS word or Google sheets and maintain a in-RStudio workflow.</p>
+<p>[paragraph on development approaches and roadblocks encountered]</p>
+<p>The package can be used in two ways:</p>
+<ol style="list-style-type: decimal">
+<li>When writing an Rmd in RStudio, you can use the RStudio Addin <code>write-good</code> to check the active Rmd document.</li>
+<li>From the R console or a terminal, you can use <code>gramr::write_good_file(&quot;my_document.Rmd&quot;)</code> to run the checks on any Rmd file. This means you can use the functions without RStudio.</li>
+</ol>
+<p>[paragraph on how we collaborated]</p>
 <div id="example-usage" class="section level3">
 <h3>Example Usage</h3>
 <pre class="r"><code>library(gramr)</code></pre>

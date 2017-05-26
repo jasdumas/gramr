@@ -11,20 +11,34 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-**Package Developers**: Jasmine Dumas (jasmine.dumas@gmail.com, Ben Marwick (benamrwick@gmail.com), Gordon Shotwell (g.e.shotwell@gmail.com)
+**Package Developers**: Jasmine Dumas (jasmine.dumas@gmail.com, Ben Marwick (benmarwick@gmail.com), Gordon Shotwell (g.e.shotwell@gmail.com)
 
-The idea behind this package was to develop a tool that checks for common grammatical errors as a companion to the native RStudio spell check, posed in the [ropensci/unconf issue #53](https://github.com/ropensci/unconf17/issues/53). The initial problem statement was to alieviate the time consuming efforts in editing RMarkdown documents in external word processing tools such as MS word or Google sheets and maintain a in-RStudio workflow. 
+The idea behind this package was to develop a tool that checks for common grammatical errors as a companion to the native RStudio spell check, posed in the [ropensci/unconf issue #53](https://github.com/ropensci/unconf17/issues/53). The initial problem statement was to alleviate some of the the time consuming efforts in grammar-checking R Markdown documents in external word processing tools such as MS word or Google sheets. A tool that gives feedback on common writing problems will help R Markdown authors because they wont need to interrupte their workflow by leaving RStudio to get this feedback. 
 
-[paragraph on development approaches and roadblocks encountered]
+Key steps in the development of the package included:
 
-[paragraph on how the package works]
+1. Identifying a suitable existing package for checking writing for catching common writing problems. We settled on `write-good` because it is a popular project on GitHub.
+2. Bundling the `write-good` program for stand-alone use in an R package was challenging. We relied on the vignettes for the V8 package, which was a huge help for getting starting. But we found that we needed to modify these instructions to correctly bundle the program. Trial and error eventually got us through.
+3. Writing functions to collect and prepare the text for the `write-good` functions was a minor challenge. A few cryptic errors required further trial and error to solve. We added code tests to ensure that we'd nailed these problems. 
+4. [something on the Shiny app from GS]
 
-[paragraph on how we collaborated]
+Future directions include tidying and prettying the output so that it's more intuitive and easier to understand. 
+
+The package can be used in three ways:
+
+1. When writing an Rmd in RStudio, you can use the RStudio Addin `write-good` to check the active Rmd document. 
+2. From the R console or a terminal, you can use `gramr::write_good_file("my_document.Rmd")` to run the checks on any Rmd file. This means you can use the functions without RStudio. 
+3. [something on the Shiny app from GS]
+
+We collaborated on package development through the [gramr GitHub repository issue tracker](https://github.com/ropenscilabs/gramr/issues) and a dedicated Slack channel in the rOpenSci Slack org. 
 
 ### Example Usage
 
 ```{r}
 library(gramr)
+# assuming we are in the top level of the pkg repo
 write_good_file("tests/testthat/test.Rmd")
 ```
 
+
+[screenshots?]
