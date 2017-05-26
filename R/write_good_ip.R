@@ -7,7 +7,7 @@
 #' # write_good_ip()
 write_good_ip <- function(){
   # Check a in-progress Untitled document before saving
-  untitled <- rstudioapi:::getSourceEditorContext()
+  untitled <- rstudioapi::getSourceEditorContext()
   # remove empty lines
   untitled_text <- untitled$contents[untitled$contents != "" ]
   cmd <- paste0("write-good --text='", untitled_text, "'")
