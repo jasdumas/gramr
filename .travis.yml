@@ -1,0 +1,21 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+language: R
+sudo: false
+cache: packages
+
+matrix:
+  include:
+    - os: linux
+    - os: osx
+
+addons:
+  apt:
+    packages:
+      - libv8-dev
+
+r_github_packages:
+  - jimhester/covr
+
+after_success:
+  - Rscript -e 'covr::codecov()'

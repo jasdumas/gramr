@@ -1,4 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^CONDUCT\.md$
+^\.travis\.yml$
+^codecov\.yml$
 ^untitled-picture\.jpg$
+
