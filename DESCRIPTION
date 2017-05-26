@@ -11,3 +11,5 @@ LazyData: true
 RoxygenNote: 6.0.1
 Imports:
  rstudioapi
+URL: https://github.com/ropenscilabs/gramr
+BugReports: https://github.com/ropenscilabs/gramr/issues
