@@ -16,7 +16,11 @@ write_good_ip <- function(){
   ct <- init_write_good()
   # analyse the text
   write_good_output <- ct$call("writeGood", untitled_text)
+  if(is.null(nrow(write_good_output))) {
+    message("write-good found no problems. Your writing is good!")
+    } else {
   return(write_good_output)
+    }
 }
 
 
@@ -38,7 +42,11 @@ write_good_file <- function(filename = ""){
   ct <- init_write_good()
   # analyse the text
   write_good_output <- ct$call("writeGood", file_text)
-  return(write_good_output)
+  if(is.null(nrow(write_good_output))) {
+    message("write-good found no problems. Your writing is good!")
+  } else {
+    return(write_good_output)
+  }
 }
 
 

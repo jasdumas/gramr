@@ -1,8 +1,13 @@
 # gramr
 
-The goal of gramr is to help R programmers write well by checking a RMarkdown document for a series of grammatical checks with the command line tool, [`write-good`](https://github.com/btford/write-good) which the native RStudio spell check feature lacks.
+[![Travis-CI Build Status](https://travis-ci.org/benmarwick/gramr.svg?branch=master)](https://travis-ci.org/benmarwick/gramr)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2017--05--19-brightgreen.svg)](https://github.com/benmarwick/gramr/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) 
 
-![](https://media.giphy.com/media/OCMGLUo7d5jJ6/giphy.gif)
+The goal of gramr is to help R programmers write well by checking a RMarkdown document for a series of grammatical checks.
+
+This package wraps the command line tool, [`write-good`](https://github.com/btford/write-good) to provide grammar checking function for Rmd documents. 
+
+It can be used as an [RStudio Addin](https://rstudio.github.io/rstudioaddins/), or from the console or command line by supplying an Rmd filename.
 
 ## Installation
 
@@ -13,9 +18,11 @@ You can install gramr from github with:
 devtools::install_github("benmarwick/gramr")
 ```
 
-## Example
+## Examples
 
-`write_good_ip`: run the write-good linter on multiple lines in an unsaved `Untitled` document
+`write_good_ip()`: run the write-good linter on text in a currently active Rmd file in RStudio
+
+`write_good_file("my_file.Rmd")`: run the write-good linter on text in an Rmd file (RStudio not required)
 
 ## Contributing
 
