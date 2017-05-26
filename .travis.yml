@@ -13,3 +13,9 @@ addons:
   apt:
     packages:
       - libv8-dev
+
+r_github_packages:
+  - jimhester/covr
+
+after_success:
+  - Rscript -e 'covr::codecov()'
