@@ -4,10 +4,12 @@ Version: 0.0.0.9000
 Authors@R: person("Jasmine", "Dumas", email = "jasmine.dumas@gmail.com", role = c("aut", "cre"))
 Description: Checks for grammar and spelling and avoids some obvious 
     programming nomenclature such as hex codes, existing package names, and file extensions.
-Depends: R (>= 3.3.2)
+Depends: R (>= 3.3.1)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
 Imports:
- rstudioapi
+ rstudioapi,
+ V8
+Suggests: testthat
