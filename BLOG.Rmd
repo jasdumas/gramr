@@ -17,8 +17,8 @@ The idea behind this package was to develop a tool that checks for common gramma
 
 Key steps in the development of the package included:
 
-1. Identifying a suitable existing package for checking writing for catching common writing problems. We settled on `write-good` because it is a popular project on GitHub.
-2. Bundling the `write-good` program for stand-alone use in an R package was challenging. We relied on the vignettes for the V8 package, which was a huge help for getting started. But we found that we needed to modify these instructions to correctly bundle the program. Trial and error eventually got us through.
+1. Identifying a suitable existing package for checking writing for catching common writing problems. Many good options exist, and we settled on [`write-good`](https://github.com/btford/write-good) because it is a popular project on GitHub.
+2. Bundling the `write-good` program for stand-alone use in an R package was challenging. We relied on the [vignettes for the V8 package](https://cran.r-project.org/web/packages/V8/vignettes/npm.html), which was a huge help for getting started. But we found that we needed to modify these instructions to correctly bundle the program. Trial and error eventually got us through.
 3. Writing functions to collect and prepare the text for the `write-good` functions was a minor challenge. A few cryptic errors required further trial and error to solve. We added code tests to ensure that we'd nailed these problems. 
 4. [something on the Shiny app from GS]
 
