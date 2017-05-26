@@ -4,8 +4,8 @@
 \alias{run_grammar_checker}
 \title{Start grammar checker}
 \usage{
-run_grammar_checker()
+run_grammar_checker(path)
 }
 \description{
-Start the grammar checker.
+Start the grammar checker
 }
