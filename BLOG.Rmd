@@ -1,0 +1,30 @@
+---
+title: "`gramr`: The grammar of grammar"
+author: 'Jasmine Dumas (jasmine.dumas@gmail.com)'
+date: '2017-05-26'
+output:
+  html_document: default
+  md_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Package Developers**: Jasmine Dumas (jasmine.dumas@gmail.com, Ben Marwick (benamrwick@gmail.com), Gordon Shotwell (g.e.shotwell@gmail.com)
+
+The idea behind this package was to develop a tool that checks for common grammatical errors as a companion to the native RStudio spell check, posed in the [ropensci/unconf issue #53](https://github.com/ropensci/unconf17/issues/53). The initial problem statement was to alieviate the time consuming efforts in editing RMarkdown documents in external word processing tools such as MS word or Google sheets and maintain a in-RStudio workflow. 
+
+[paragraph on development approaches and roadblocks encountered]
+
+[paragraph on how the package works]
+
+[paragraph on how we collaborated]
+
+### Example Usage
+
+```{r}
+library(gramr)
+write_good_file("tests/testthat/test.Rmd")
+```
+
