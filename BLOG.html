@@ -125,24 +125,23 @@ $(document).ready(function () {
 
 
 <p><strong>Package Developers</strong>: Jasmine Dumas (<a href="mailto:jasmine.dumas@gmail.com">jasmine.dumas@gmail.com</a>, Ben Marwick (<a href="mailto:benmarwick@gmail.com">benmarwick@gmail.com</a>), Gordon Shotwell (<a href="mailto:g.e.shotwell@gmail.com">g.e.shotwell@gmail.com</a>)</p>
-<p>The idea behind this package was to develop a tool that checks for common grammatical errors as a companion to the native RStudio spell check, posed in the <a href="https://github.com/ropensci/unconf17/issues/53">ropensci/unconf issue #53</a>. The initial problem statement was to alleviate some of the the time consuming efforts in grammar-checking R Markdown documents in external word processing tools such as MS word or Google sheets. A tool that gives feedback on common writing problems will help R Markdown authors because they wont need to interrupte their workflow by leaving RStudio to get this feedback.</p>
-<p>Key steps in the development of the package included:</p>
+<p>The idea behind this package was to develop a tool that checks for common grammatical errors as a companion to the native RStudio spell check, posed in the <a href="https://github.com/ropensci/unconf17/issues/53">ropensci/unconf issue #53</a>. The initial problem statement was to alleviate some of the time consuming efforts in grammar-checking R Markdown documents in external word processing tools such as MS word or Google Docs. A tool that gives feedback on common writing problems will help R Markdown authors because they wont need to interrupte their workflow by leaving RStudio to get this feedback.</p>
+<p><strong>Key steps in the development of the package included</strong>:</p>
 <ol style="list-style-type: decimal">
-<li>Identifying a suitable existing package for checking writing for catching common writing problems. Many good options exist, and we settled on <a href="https://github.com/btford/write-good"><code>write-good</code></a> because it is a popular project on GitHub.</li>
+<li>Identifying a suitable existing package for checking writing for catching common writing problems. Various good options exist, and we settled on <a href="https://github.com/btford/write-good"><code>write-good</code></a> because it is a popular project on GitHub.</li>
 <li>Bundling the <code>write-good</code> program for stand-alone use in an R package was challenging. We relied on the <a href="https://cran.r-project.org/web/packages/V8/vignettes/npm.html">vignettes for the V8 package</a>, which was a huge help for getting started. But we found that we needed to modify these instructions to correctly bundle the program. Trial and error eventually got us through.</li>
 <li>Writing functions to collect and prepare the text for the <code>write-good</code> functions was a minor challenge. A few cryptic errors required further trial and error to solve. We added code tests to ensure that we’d nailed these problems.</li>
-<li>[something on the Shiny app from GS]</li>
+<li>A <code>shiny</code> application was developed to guide the correction of grammatical mistakes.</li>
 </ol>
 <p>Future directions include tidying and prettying the output so that it’s more intuitive and easier to understand.</p>
-<p>The package can be used in three ways:</p>
+<p><strong>The package can be used in three ways</strong>:</p>
 <ol style="list-style-type: decimal">
 <li>When writing an Rmd in RStudio, you can use the RStudio Addin <code>write-good</code> to check the active Rmd document.</li>
 <li>From the R console or a terminal, you can use <code>gramr::write_good_file(&quot;my_document.Rmd&quot;)</code> to run the checks on any Rmd file. This means you can use the functions without RStudio.</li>
-<li>[something on the Shiny app from GS]</li>
+<li>A shiny application can be launched with <code>gramr::run_grammar_checker(&quot;example.rmd&quot;)</code></li>
 </ol>
-<p>We collaborated on package development through the <a href="https://github.com/ropenscilabs/gramr/issues">gramr GitHub repository issue tracker</a> and a dedicated Slack channel in the rOpenSci Slack org.</p>
-<div id="example-usage" class="section level3">
-<h3>Example Usage</h3>
+<p>We collaborated on package development through the <a href="https://github.com/ropenscilabs/gramr/issues">#gramr GitHub repository issue tracker</a> and a dedicated Slack channel in the rOpenSci Slack org.</p>
+<p><strong>Example Usage</strong>:</p>
 <pre class="r"><code># when the library is loaded it checks that the write-good javascript bundle is available
 library(gramr)</code></pre>
 <pre><code>## write-good has been loaded and is ready to use</code></pre>
@@ -151,7 +150,6 @@ write_good_file(&quot;tests/testthat/test.Rmd&quot;)</code></pre>
 <pre><code>##   index offset                              reason
 ## 1    15     12 &quot;been defined&quot; may be passive voice
 ## 2    49      8       &quot;suddenly&quot; can weaken meaning</code></pre>
-</div>
 
 
 

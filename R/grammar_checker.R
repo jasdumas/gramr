@@ -1,15 +1,13 @@
-# Define UI for application that draws a histogram
-library(shiny)
-#' Start grammar checker
-#'
-#' @description Start the grammar checker. This allows the user to step through lines of code
-#' which have grammar errors, and then write the resulting file.
-#' @param
-#' The filepath you wish to grammar check.
-#' @return
-#' @export
+#' Start grammar checker shiny application
+#' Start the grammar checker. This allows the user to step through lines of code
+#'   which have grammar errors, and then write the resulting file.
+#' @param path the intended filepath
+#' @return a shiny app is launched
 #'
 #' @examples
+#' # don't run during tests
+#' # gramr::run_grammar_checker("example.rmd")
+#' @export
 run_grammar_checker <- function(path){
   text_df <- parse_rmd(path)
   check_df <- text_df[purrr::map_lgl(text_df$grammar_check, ~!is.null(.)), ]
