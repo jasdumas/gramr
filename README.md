@@ -1,6 +1,8 @@
 # gramr
 
-The goal of gramr is to help R programmers write well by checking a RMarkdown document for a series of grammatical checks which the native RStudio spell check does not have.
+The goal of gramr is to help R programmers write well by checking a RMarkdown document for a series of grammatical checks with the command line tool, [`write-good`](https://github.com/btford/write-good) which the native RStudio spell check feature lacks.
+
+![](https://media.giphy.com/media/OCMGLUo7d5jJ6/giphy.gif)
 
 ## Installation
 
@@ -13,9 +15,11 @@ devtools::install_github("ropenscilabs/gramr")
 
 ### Current Dependencies
 
-This package currently is dependent on **node.js** available at: https://nodejs.org/en/ which also downloads [npm](https://www.npmjs.com/)
+This package currently is dependent on **node.js** available at: https://nodejs.org/en/ which also downloads [npm](https://www.npmjs.com/). Then the command line tool can be downloaded: `npm install write-good`
 
 ## Example
+
+`write_good_ip`: run the write-good linter on multiple lines in an unsaved `Untitled` document
 
 ## Contributing
 
