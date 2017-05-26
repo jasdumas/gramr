@@ -12,4 +12,5 @@ RoxygenNote: 6.0.1
 Imports:
  rstudioapi,
  V8
-Suggests: testthat
+Suggests: testthat,
+    covr
