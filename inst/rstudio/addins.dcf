@@ -1,4 +1,4 @@
 Name: Run write-good I/P
-  Description: Run write-good linter before saving a multi-line file.
+Description: Run write-good linter before saving a multi-line file.
 Binding: write_good_ip
 Interactive: false
