@@ -1,4 +1,9 @@
-Name: write-good
+Name: Run write-good on a file
+Description: Run write-good linter on a file
+Binding: write_good_file
+Interactive: true
+
+Name: Run write-good on Untitled Documents
 Description: Run write-good linter before saving a multi-line file.
 Binding: write_good_ip
-Interactive: true
+Interactive: false
