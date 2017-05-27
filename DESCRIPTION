@@ -4,8 +4,8 @@ Version: 0.0.0.9000
 Authors@R: c(person("Jasmine", "Dumas", email = "jasmine.dumas@gmail.com", role = c("aut", "cre")), 
              person("Ben", "Marwick", email = "benamrwick@gmail.com", role = "aut"),
              person("Gordon", "Shotwell", email = "g.e.shotwell@gmail.com", role = "aut"))
-Description: Checks for grammar and spelling and avoids some obvious 
-    programming nomenclature such as hex codes, existing package names, and file extensions.
+Description: Provides functions that wrap the write-good command line tool
+             for checking grammar and offers suggestions on improvements to enhance writing. 
 Depends: R (>= 3.3.1)
 License: MIT + file LICENSE
 Encoding: UTF-8
