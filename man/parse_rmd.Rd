@@ -2,10 +2,20 @@
 % Please edit documentation in R/parse_rmd.R
 \name{parse_rmd}
 \alias{parse_rmd}
-\title{Title}
+\title{Parse RMarkdown documents}
 \usage{
 parse_rmd(file)
 }
+\arguments{
+\item{file}{a character vector of the file or path}
+}
+\value{
+used in the shiy app
+}
 \description{
-Title
+Parse RMarkdown documents
+}
+\examples{
+# don't run
+# parse_rmd()
 }

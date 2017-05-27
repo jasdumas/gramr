@@ -13,7 +13,11 @@ LazyData: true
 RoxygenNote: 6.0.1
 Imports:
  rstudioapi,
- V8
+ V8, 
+ dplyr, 
+ purrr, 
+ shiny, 
+ stringr
 Suggests: 
   testthat,
   covr

@@ -3,21 +3,22 @@
 #'   which have grammar errors, and then write the resulting file.
 #' @param path the intended filepath
 #' @return a shiny app is launched
-#'
+#' @importFrom purrr map_lgl
+#' @import shiny
 #' @examples
 #' # don't run during tests
 #' # gramr::run_grammar_checker("example.rmd")
 #' @export
 run_grammar_checker <- function(path){
   text_df <- parse_rmd(path)
-  check_df <- text_df[purrr::map_lgl(text_df$grammar_check, ~!is.null(.)), ]
+  check_df <- text_df[map_lgl(text_df$grammar_check, ~!is.null(.)), ]
   counter <- 1
 
-  ui <- shiny::fluidPage(
+  ui <- fluidPage(
     # Application title
-    shiny::sidebarLayout(
-      shiny::sidebarPanel(
-        shiny::checkboxGroupInput(inputId = 'options',
+    sidebarLayout(
+      sidebarPanel(
+        checkboxGroupInput(inputId = 'options',
                                   label = "Ignore",
                                   choiceNames = list("Passive Voice",
                                                      "Duplicate words (the the)",
@@ -34,20 +35,20 @@ run_grammar_checker <- function(path){
         actionButton("do", "Next"),
         actionButton("exit", "Finish")
       ),
-      shiny::mainPanel(
-        shiny::textAreaInput(inputId  = 'text',
+      mainPanel(
+        textAreaInput(inputId  = 'text',
                              label  = 'Text to Check',
                              value  = check_df$text[1],
                              height = 300,
                              width = 500,
                              resize = "both"),
-        shiny::verbatimTextOutput(outputId = "text")
+        verbatimTextOutput(outputId = "text")
       )
     )
   )
 
   server <- function(input, output, session) {
-    output$text <- shiny::renderText({
+    output$text <- renderText({
       option_list <- lapply(input$options, function(x)FALSE)
       names(option_list) <- input$options
       out <- check_grammar(input$text, option_list)
@@ -55,7 +56,7 @@ run_grammar_checker <- function(path){
       out
     })
 
-    shiny::observeEvent(input$do, {
+    observeEvent(input$do, {
       if( counter < length(check_df)){
         text_df[ text_df$line_num == check_df$line_num[counter], "text"] <- input$text
         counter <<- counter + 1
@@ -63,7 +64,7 @@ run_grammar_checker <- function(path){
       }
     })
 
-    shiny::observeEvent(input$exit, {
+    observeEvent(input$exit, {
       text_df[ text_df$line_num == check_df$line_num[counter], "text"] <- input$text
       writeLines(text_df$text, path)
       stopApp()
@@ -71,5 +72,5 @@ run_grammar_checker <- function(path){
   }
 
   # Run the application
-  shiny::shinyApp(ui = ui, server = server)
+  shinyApp(ui = ui, server = server)
 }

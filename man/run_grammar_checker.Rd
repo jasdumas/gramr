@@ -2,10 +2,24 @@
 % Please edit documentation in R/grammar_checker.R
 \name{run_grammar_checker}
 \alias{run_grammar_checker}
-\title{Start grammar checker}
+\title{Start grammar checker shiny application
+Start the grammar checker. This allows the user to step through lines of code
+  which have grammar errors, and then write the resulting file.}
 \usage{
 run_grammar_checker(path)
 }
+\arguments{
+\item{path}{the intended filepath}
+}
+\value{
+a shiny app is launched
+}
 \description{
-Start the grammar checker
+Start grammar checker shiny application
+Start the grammar checker. This allows the user to step through lines of code
+  which have grammar errors, and then write the resulting file.
+}
+\examples{
+# don't run during tests
+# gramr::run_grammar_checker("example.rmd")
 }
