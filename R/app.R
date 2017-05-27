@@ -1,3 +1,44 @@
+
+#--------------------------------
+# Functions for the Shiny app
+
+#' Parse RMarkdown documents
+#' @param file a character vector of the file or path
+#' @return used in the shiy app
+#' @importFrom dplyr data_frame
+#' @importFrom stringr str_detect
+#' @importFrom purrr map
+#' @examples
+#' # don't run
+#' # parse_rmd()
+#' @export
+parse_rmd <- function(file){
+  text_df <- data_frame(
+    text = readLines(file),
+    is_code = FALSE
+  )
+  text_df$line_num <- 1:nrow(text_df)
+  text_df$code_mark = str_detect(text_df$text, "^```") |
+    str_detect(text_df$text, "---")
+  text_df$is_code[text_df$code_mark] <- TRUE
+
+  flip_flop <- TRUE
+  for (i in seq_along(text_df$text)) {
+    if (flip_flop) {
+      text_df$is_code[i] <- TRUE
+    }
+    if (text_df$code_mark[i] && i > 1) {
+      flip_flop <- !flip_flop
+    }
+  }
+
+  text_df$grammar_check <- map(text_df$text, check_grammar)
+  text_df
+}
+
+
+
+
 #' Start grammar checker shiny application
 #' Start the grammar checker. This allows the user to step through lines of code
 #'   which have grammar errors, and then write the resulting file.
