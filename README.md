@@ -1,5 +1,7 @@
 # gramr
 
+![](https://travis-ci.org/ropenscilabs/gramr.svg?branch=master)
+
 
 **The goal of gramr is to help R programmers who can't write good and and wanna learn to do other stuff good too by checking a RMarkdown document for grammatical errors.**
 
