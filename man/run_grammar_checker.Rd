@@ -3,8 +3,9 @@
 \name{run_grammar_checker}
 \alias{run_grammar_checker}
 \title{Start grammar checker shiny application
-Start the grammar checker. This allows the user to step through lines of code
-  which have grammar errors, and then write the resulting file.}
+Start the grammar checker. This allows the user to
+step through lines of text
+which may have grammar errors, and then write the resulting file.}
 \usage{
 run_grammar_checker(path)
 }
@@ -16,8 +17,9 @@ a shiny app is launched
 }
 \description{
 Start grammar checker shiny application
-Start the grammar checker. This allows the user to step through lines of code
-  which have grammar errors, and then write the resulting file.
+Start the grammar checker. This allows the user to
+step through lines of text
+which may have grammar errors, and then write the resulting file.
 }
 \examples{
 # don't run during tests

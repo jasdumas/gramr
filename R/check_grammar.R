@@ -63,7 +63,7 @@ write_good_ip <- function(){
 #' @return a print out of suggestions for grammar fixes
 #' @export
 
-#' @import V8
+#' @import V8 knitr
 #' @examples
 #' # don't run during tests
 #' # write_good_file()
@@ -73,7 +73,7 @@ write_good_file <- function(filename = ""){
   #  load write-good
   ct <- init_write_good()
   # analyse the text
-  write_good_output <- ct$call("writeGood", untitled_text)
+  write_good_output <- ct$call("writeGood", file_text)
   write_good_output_tidy <- kable(write_good_output)
   if(is.null(nrow(write_good_output))) {
     message("write-good found no problems. Your writing is good!")

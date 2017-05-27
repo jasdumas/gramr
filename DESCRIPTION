@@ -17,7 +17,8 @@ Imports:
  dplyr, 
  purrr, 
  shiny, 
- stringr
+ stringr,
+ knitr
 Suggests: 
   testthat,
   covr
