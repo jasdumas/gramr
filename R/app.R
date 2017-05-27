@@ -40,8 +40,9 @@ parse_rmd <- function(file){
 
 
 #' Start grammar checker shiny application
-#' Start the grammar checker. This allows the user to step through lines of code
-#'   which have grammar errors, and then write the resulting file.
+#' Start the grammar checker. This allows the user to
+#' step through lines of text
+#' which may have grammar errors, and then write the resulting file.
 #' @param path the intended filepath
 #' @return a shiny app is launched
 #' @importFrom purrr map_lgl
@@ -101,7 +102,7 @@ run_grammar_checker <- function(path){
       if( counter < length(check_df)){
         text_df[ text_df$line_num == check_df$line_num[counter], "text"] <- input$text
         counter <<- counter + 1
-        shiny::updateTextInput(session, "text", value = check_df$text[counter])
+        updateTextInput(session, "text", value = check_df$text[counter])
       }
     })
 
