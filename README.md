@@ -5,7 +5,7 @@
 [![Last-changedate](https://img.shields.io/badge/last%20change-2017--05--19-brightgreen.svg)](https://github.com/ropenscilabs/gramr/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) 
 
 
-**The goal of gramr is to help R programmers who can't write good and and wanna learn to do other stuff good too by checking a RMarkdown document for grammatical errors.**
+**The goal of gramr is to help R programmers who can't write good and wanna learn to do other stuff good too by checking a RMarkdown document for grammatical errors.**
 
 This package wraps the command line tool, [`write-good`](https://github.com/btford/write-good) to provide grammar checking functions for Rmd or md documents. It can be used as an [RStudio Addin](https://rstudio.github.io/rstudioaddins/), or from the console or command line by supplying an Rmd or md filename.
 
