@@ -60,7 +60,7 @@ write_good_ip <- function(){
 #'
 #'
 #' @param filename the name of an Rmd file. Does not have to be open in RStudio.
-#' @return a print out of suggestions for grammar fixes
+#' @return a data.frame with suggestions for grammar fixes
 #' @export
 
 #' @import V8 knitr
@@ -74,10 +74,20 @@ write_good_file <- function(filename = ""){
   ct <- init_write_good()
   # analyse the text
   write_good_output <- ct$call("writeGood", file_text)
-  write_good_output_tidy <- kable(write_good_output)
-  if(is.null(nrow(write_good_output))) {
+  if (is.null(nrow(write_good_output))) {
     message("write-good found no problems. Your writing is good!")
-  } else {
-    return(write_good_output_tidy)
+    write_good_output <- data.frame(
+      index = integer(0),
+      offset = integer(0),
+      reason = character(0),
+      stringsAsFactors = FALSE
+    )
   }
+  class(write_good_output) <- c("write_good", "data.frame")
+  return(write_good_output)
+}
+
+#' @export
+print.write_good <- function(x, ...) {
+  print(kable(x))
 }

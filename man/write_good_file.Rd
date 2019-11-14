@@ -10,7 +10,7 @@ write_good_file(filename = "")
 \item{filename}{the name of an Rmd file. Does not have to be open in RStudio.}
 }
 \value{
-a print out of suggestions for grammar fixes
+a data.frame with suggestions for grammar fixes
 }
 \description{
 Check the grammar of a Rmd by filename
