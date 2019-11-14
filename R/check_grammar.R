@@ -90,8 +90,11 @@ write_good_file <- function(
       index = integer(0),
       offset = integer(0),
       reason = character(0),
+      filename = character(0),
       stringsAsFactors = FALSE
     )
+  } else {
+    write_good_output$filename <- filename
   }
   class(write_good_output) <- c("write_good", "data.frame")
   return(write_good_output)
@@ -126,5 +129,18 @@ remove_chunks <- function(file_text) {
 
 #' @export
 print.write_good <- function(x, ...) {
-  print(kable(x))
+  sapply(
+    unique(x$filename),
+    function(i) {
+      cat(i)
+      print(
+        kable(
+          x[x$filename == i, c("index", "offset", "reason")],
+          row.names = FALSE
+        )
+      )
+      cat("\n")
+    }
+  )
+  return(invisible(x))
 }
