@@ -60,24 +60,109 @@ write_good_ip <- function(){
 #'
 #'
 #' @param filename the name of an Rmd file. Does not have to be open in RStudio.
-#' @return a print out of suggestions for grammar fixes
+#' @param exclude_chunks exclude RMarkdown code chunks. Defaults to FALSE.
+#' @param verbose display a message in case of good writing. Defaults to TRUE.
+#' @return a data.frame with suggestions for grammar fixes
 #' @export
 
 #' @import V8 knitr
 #' @examples
 #' # don't run during tests
 #' # write_good_file()
-write_good_file <- function(filename = ""){
+write_good_file <- function(
+  filename = "", exclude_chunks = FALSE, verbose = TRUE
+) {
   # Check a in-progress Untitled document before saving
-  file_text <- paste(scan(filename, 'character', quiet = TRUE), collapse = " ")
+  file_text <- scan(filename, 'character', quiet = TRUE)
+  if (exclude_chunks) {
+    file_text <- remove_chunks(file_text)
+  }
+  file_text <- paste(file_text, collapse = " ")
   #  load write-good
   ct <- init_write_good()
   # analyse the text
   write_good_output <- ct$call("writeGood", file_text)
-  write_good_output_tidy <- kable(write_good_output)
-  if(is.null(nrow(write_good_output))) {
-    message("write-good found no problems. Your writing is good!")
+  if (is.null(nrow(write_good_output))) {
+    if (verbose) {
+      message("write-good found no problems. Your writing is good!")
+    }
+    write_good_output <- data.frame(
+      index = integer(0),
+      offset = integer(0),
+      reason = character(0),
+      filename = character(0),
+      stringsAsFactors = FALSE
+    )
   } else {
-    return(write_good_output_tidy)
+    write_good_output$filename <- filename
   }
+  class(write_good_output) <- c("write_good", "data.frame")
+  return(write_good_output)
+}
+
+remove_chunks <- function(file_text) {
+  chunk_start <- grep("```\\{?r", file_text)
+  chunk_end <- which(file_text == "```")
+  chunks <- integer(0)
+  while (length(chunk_start) && length(chunk_end)) {
+    end <- which(chunk_end > chunk_start[1])
+    if (length(end) == 0) {
+      break
+    }
+    chunks <- c(chunks, chunk_start[1]:chunk_end[min(end)])
+    chunk_start <- chunk_start[-1]
+    chunk_end <- chunk_end[-min(end)]
+  }
+  if (length(chunk_start) > 0) {
+    stop("chunk without ending '```'")
+  }
+  # handles chunks starting and ending with ```
+  while (length(chunk_end) %/% 2) {
+    chunks <- c(chunks, chunk_end[1]:chunk_end[2])
+    chunk_end <- chunk_end[-1:-2]
+  }
+  if (length(chunks) == 0) {
+    return(file_text)
+  }
+  file_text[-chunks]
+}
+
+#' @export
+print.write_good <- function(x, ...) {
+  sapply(
+    unique(x$filename),
+    function(i) {
+      cat(i)
+      print(
+        kable(
+          x[x$filename == i, c("index", "offset", "reason")],
+          row.names = FALSE
+        )
+      )
+      cat("\n")
+    }
+  )
+  return(invisible(x))
+}
+
+#' Check All Files in a Project
+#'
+#' Check all md and Rmd files in a project.
+#' @param path the path of the project
+#' @inheritParams write_good_file
+#' @return a data.frame with all suggestions
+#' @export
+check_project <- function(path = ".", exclude_chunks = FALSE, verbose = TRUE) {
+  files <- list.files(
+    path = path, pattern = "\\.(R)*md$", full.names = TRUE, ignore.case = TRUE,
+    recursive = TRUE
+  )
+  output <- lapply(
+    files, write_good_file, exclude_chunks = exclude_chunks, verbose = FALSE
+  )
+  output <- do.call(rbind, output)
+  if (verbose && nrow(output) == 0) {
+    message("write-good found no problems. Your writing is good!")
+  }
+  return(output)
 }

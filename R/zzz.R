@@ -21,6 +21,7 @@ init_msg <- function(){
 }
 
 #' show a status msg on pkg load
+#' @noRd
 .onAttach <- function(libname, pkgname) {
   msg <- init_msg()
   packageStartupMessage(msg)
