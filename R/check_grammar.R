@@ -144,3 +144,25 @@ print.write_good <- function(x, ...) {
   )
   return(invisible(x))
 }
+
+#' Check All Files in a Project
+#'
+#' Check all md and Rmd files in a project.
+#' @param path the path of the project
+#' @inheritParams write_good_file
+#' @return a data.frame with all suggestions
+#' @export
+check_project <- function(path = ".", exclude_chunks = FALSE, verbose = TRUE) {
+  files <- list.files(
+    path = path, pattern = "\\.(R)*md$", full.names = TRUE, ignore.case = TRUE,
+    recursive = TRUE
+  )
+  output <- lapply(
+    files, write_good_file, exclude_chunks = exclude_chunks, verbose = FALSE
+  )
+  output <- do.call(rbind, output)
+  if (verbose && nrow(output) == 0) {
+    message("write-good found no problems. Your writing is good!")
+  }
+  return(output)
+}
