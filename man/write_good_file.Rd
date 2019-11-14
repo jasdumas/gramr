@@ -4,10 +4,15 @@
 \alias{write_good_file}
 \title{Check the grammar of a Rmd by filename}
 \usage{
-write_good_file(filename = "")
+write_good_file(filename = "", exclude_chunks = FALSE,
+  verbose = TRUE)
 }
 \arguments{
 \item{filename}{the name of an Rmd file. Does not have to be open in RStudio.}
+
+\item{exclude_chunks}{exclude RMarkdown code chunks. Defaults to FALSE.}
+
+\item{verbose}{display a message in case of good writing. Defaults to TRUE.}
 }
 \value{
 a data.frame with suggestions for grammar fixes

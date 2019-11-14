@@ -60,6 +60,8 @@ write_good_ip <- function(){
 #'
 #'
 #' @param filename the name of an Rmd file. Does not have to be open in RStudio.
+#' @param exclude_chunks exclude RMarkdown code chunks. Defaults to FALSE.
+#' @param verbose display a message in case of good writing. Defaults to TRUE.
 #' @return a data.frame with suggestions for grammar fixes
 #' @export
 
@@ -67,15 +69,23 @@ write_good_ip <- function(){
 #' @examples
 #' # don't run during tests
 #' # write_good_file()
-write_good_file <- function(filename = ""){
+write_good_file <- function(
+  filename = "", exclude_chunks = FALSE, verbose = TRUE
+) {
   # Check a in-progress Untitled document before saving
-  file_text <- paste(scan(filename, 'character', quiet = TRUE), collapse = " ")
+  file_text <- scan(filename, 'character', quiet = TRUE)
+  if (exclude_chunks) {
+    file_text <- remove_chunks(file_text)
+  }
+  file_text <- paste(file_text, collapse = " ")
   #  load write-good
   ct <- init_write_good()
   # analyse the text
   write_good_output <- ct$call("writeGood", file_text)
   if (is.null(nrow(write_good_output))) {
-    message("write-good found no problems. Your writing is good!")
+    if (verbose) {
+      message("write-good found no problems. Your writing is good!")
+    }
     write_good_output <- data.frame(
       index = integer(0),
       offset = integer(0),
@@ -85,6 +95,33 @@ write_good_file <- function(filename = ""){
   }
   class(write_good_output) <- c("write_good", "data.frame")
   return(write_good_output)
+}
+
+remove_chunks <- function(file_text) {
+  chunk_start <- grep("```\\{?r", file_text)
+  chunk_end <- which(file_text == "```")
+  chunks <- integer(0)
+  while (length(chunk_start) && length(chunk_end)) {
+    end <- which(chunk_end > chunk_start[1])
+    if (length(end) == 0) {
+      break
+    }
+    chunks <- c(chunks, chunk_start[1]:chunk_end[min(end)])
+    chunk_start <- chunk_start[-1]
+    chunk_end <- chunk_end[-min(end)]
+  }
+  if (length(chunk_start) > 0) {
+    stop("chunk without ending '```'")
+  }
+  # handles chunks starting and ending with ```
+  while (length(chunk_end) %/% 2) {
+    chunks <- c(chunks, chunk_end[1]:chunk_end[2])
+    chunk_end <- chunk_end[-1:-2]
+  }
+  if (length(chunks) == 0) {
+    return(file_text)
+  }
+  file_text[-chunks]
 }
 
 #' @export
